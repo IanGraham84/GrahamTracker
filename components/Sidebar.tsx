@@ -30,7 +30,10 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 shrink-0 border-r border-line bg-card flex flex-col h-screen sticky top-0">
-      <div className="p-4 border-b border-line flex items-center gap-3">
+      <Link
+        href="/dashboard"
+        className="p-4 border-b border-line flex items-center gap-3 hover:bg-hover transition-colors"
+      >
         <Image
           src="/graham-agency-logo.webp"
           alt=""
@@ -42,7 +45,7 @@ export default function Sidebar() {
           <p className="font-semibold text-sm">{AGENCY.name}</p>
           <p className="text-xs text-faint">Onboarding tracker</p>
         </div>
-      </div>
+      </Link>
 
       <div className="p-3">
         <button
