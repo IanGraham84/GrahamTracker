@@ -100,7 +100,7 @@ export default function AgentSelfServicePage() {
 
       <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Your checklist</p>
-        <Checklist agentFull={agentFull} admin={false} onToggle={toggleStep} />
+        <Checklist key={agentFull.agent.id} agentFull={agentFull} admin={false} onToggle={toggleStep} />
       </div>
 
       <div className="bg-card rounded-2xl border border-line p-4">

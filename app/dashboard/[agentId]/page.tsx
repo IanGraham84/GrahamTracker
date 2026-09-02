@@ -367,7 +367,7 @@ export default function AgentDetailPage() {
 
       <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Checklist</p>
-        <Checklist agentFull={agentFull} admin onToggle={toggleStep} />
+        <Checklist key={agentFull.agent.id} agentFull={agentFull} admin onToggle={toggleStep} />
       </div>
 
       <div className="bg-card rounded-2xl border border-line p-4">
