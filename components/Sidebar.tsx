@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAgents } from "@/lib/AgentsContext";
@@ -29,9 +30,18 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 shrink-0 border-r border-line bg-card flex flex-col h-screen sticky top-0">
-      <div className="p-4 border-b border-line">
-        <p className="font-semibold text-sm">{AGENCY.name}</p>
-        <p className="text-xs text-faint">Onboarding tracker</p>
+      <div className="p-4 border-b border-line flex items-center gap-3">
+        <Image
+          src="/graham-agency-logo.webp"
+          alt=""
+          width={40}
+          height={40}
+          className="shrink-0"
+        />
+        <div>
+          <p className="font-semibold text-sm">{AGENCY.name}</p>
+          <p className="text-xs text-faint">Onboarding tracker</p>
+        </div>
       </div>
 
       <div className="p-3">

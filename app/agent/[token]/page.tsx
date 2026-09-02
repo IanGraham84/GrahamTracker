@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import confetti from "canvas-confetti";
 import { AgentFull, AgentSchedule } from "@/lib/types";
@@ -85,9 +86,9 @@ export default function AgentSelfServicePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12 space-y-6">
       <div className="text-center space-y-1">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-          {AGENCY.name}
-        </p>
+        <div className="flex justify-center mb-2">
+          <Image src="/graham-agency-logo.webp" alt={AGENCY.name} width={96} height={96} priority />
+        </div>
         <h1 className="text-2xl font-semibold">Welcome, {agentFull.agent.name.split(" ")[0]}!</h1>
         <p className="text-sm text-muted">{stage}</p>
       </div>

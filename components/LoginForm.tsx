@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabaseClient";
 import { AGENCY } from "@/lib/agency";
-
-const agencyNameWords = AGENCY.name.split(" ");
 
 export default function LoginForm() {
   const router = useRouter();
@@ -35,12 +34,14 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm bg-card rounded-2xl border border-line p-8">
-        <div className="text-center mb-1">
-          <p className="text-[11px] font-semibold tracking-widest text-faint uppercase">The</p>
-          <p className="text-xl font-bold tracking-tight">
-            <span className="text-foreground">{agencyNameWords.slice(0, -1).join(" ")} </span>
-            <span className="text-primary">{agencyNameWords.at(-1)}</span>
-          </p>
+        <div className="flex justify-center mb-3">
+          <Image
+            src="/graham-agency-logo.webp"
+            alt={AGENCY.name}
+            width={140}
+            height={140}
+            priority
+          />
         </div>
         <p className="text-sm text-muted text-center mb-6">Onboarding tracker admin login</p>
 
