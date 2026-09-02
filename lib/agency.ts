@@ -1,4 +1,4 @@
 export const AGENCY = {
-  name: "Hunt Agency",
-  confettiColors: ["#637777", "#a0c3d1", "#7c5a3e", "#ffffff"],
+  name: "Graham Agency",
+  confettiColors: ["#29c2f0", "#0a1830", "#7dd3fc", "#ffffff"],
 };

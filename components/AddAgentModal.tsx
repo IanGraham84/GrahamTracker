@@ -61,16 +61,16 @@ export default function AddAgentModal({
     <Modal title="Add agent" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Name</label>
+          <label className="block text-xs font-medium text-muted mb-1">Name</label>
           <input
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-line px-3 py-2 text-sm"
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoFocus
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Type</label>
+          <label className="block text-xs font-medium text-muted mb-1">Type</label>
           <div className="flex gap-2">
             {(["unlicensed", "licensed"] as AgentType[]).map((t) => (
               <button
@@ -79,8 +79,8 @@ export default function AddAgentModal({
                 onClick={() => setType(t)}
                 className={`flex-1 rounded-lg border px-3 py-2 text-sm capitalize ${
                   type === t
-                    ? "bg-primary text-white border-primary"
-                    : "bg-white border-gray-200 text-gray-600"
+                    ? "bg-primary text-background border-primary"
+                    : "bg-card border-line text-muted"
                 }`}
               >
                 {t}
@@ -89,45 +89,45 @@ export default function AddAgentModal({
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Upline</label>
+          <label className="block text-xs font-medium text-muted mb-1">Upline</label>
           <input
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-line px-3 py-2 text-sm"
             value={upline}
             onChange={(e) => setUpline(e.target.value)}
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Start date</label>
+          <label className="block text-xs font-medium text-muted mb-1">Start date</label>
           <input
             type="date"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-line px-3 py-2 text-sm"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Phone</label>
+            <label className="block text-xs font-medium text-muted mb-1">Phone</label>
             <input
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-line px-3 py-2 text-sm"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">State</label>
+            <label className="block text-xs font-medium text-muted mb-1">State</label>
             <input
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-line px-3 py-2 text-sm"
               value={state}
               onChange={(e) => setState(e.target.value)}
             />
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Email</label>
+          <label className="block text-xs font-medium text-muted mb-1">Email</label>
           <input
             type="email"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-line px-3 py-2 text-sm"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -136,7 +136,7 @@ export default function AddAgentModal({
         <button
           type="submit"
           disabled={saving}
-          className="w-full rounded-lg bg-primary text-white py-2 text-sm font-medium disabled:opacity-50"
+          className="w-full rounded-lg bg-primary text-background py-2 text-sm font-medium disabled:opacity-50"
         >
           {saving ? "Adding…" : "Add agent"}
         </button>

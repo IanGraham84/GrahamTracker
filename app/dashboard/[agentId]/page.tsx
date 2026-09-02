@@ -195,8 +195,8 @@ export default function AgentDetailPage() {
     load();
   }
 
-  if (loading) return <p className="text-sm text-gray-400">Loading…</p>;
-  if (notFound || !agentFull) return <p className="text-sm text-gray-400">Agent not found.</p>;
+  if (loading) return <p className="text-sm text-faint">Loading…</p>;
+  if (notFound || !agentFull) return <p className="text-sm text-faint">Agent not found.</p>;
 
   const stage = computeStage(agentFull);
   const progress = computeProgress(agentFull);
@@ -212,12 +212,12 @@ export default function AgentDetailPage() {
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl font-semibold">{agent.name}</h1>
               {agent.archived_at && (
-                <span className="text-xs font-medium bg-gray-100 text-gray-500 rounded-full px-2 py-0.5">
+                <span className="text-xs font-medium bg-hover text-muted rounded-full px-2 py-0.5">
                   Archived
                 </span>
               )}
             </div>
-            <p className="text-sm text-gray-500">{stage}</p>
+            <p className="text-sm text-muted">{stage}</p>
             {stall && (
               <div className="mt-1">
                 <StallPill label={stall.label} />
@@ -229,14 +229,14 @@ export default function AgentDetailPage() {
           <button
             type="button"
             onClick={() => setShowEdit(true)}
-            className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:bg-hover"
           >
             Edit agent
           </button>
           <button
             type="button"
             onClick={handleArchiveToggle}
-            className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:bg-hover"
           >
             {agent.archived_at ? "Unarchive" : "Archive"}
           </button>
@@ -250,50 +250,50 @@ export default function AgentDetailPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <ProgressBar percent={progress} />
-        <p className="text-xs text-gray-400 mt-1">{progress}% complete</p>
+        <p className="text-xs text-faint mt-1">{progress}% complete</p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
+      <div className="bg-card rounded-2xl border border-line p-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
         <div>
-          <p className="text-xs text-gray-400">Type</p>
+          <p className="text-xs text-faint">Type</p>
           <p className="capitalize">{agent.type}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">Upline</p>
+          <p className="text-xs text-faint">Upline</p>
           <p>{agent.upline || "—"}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">Start date</p>
+          <p className="text-xs text-faint">Start date</p>
           <p>{agent.start_date}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">Phone</p>
+          <p className="text-xs text-faint">Phone</p>
           <p>{agent.phone || "—"}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">Email</p>
+          <p className="text-xs text-faint">Email</p>
           <p>{agent.email || "—"}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-400">State</p>
+          <p className="text-xs text-faint">State</p>
           <p>{agent.state || "—"}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
-        <p className="text-xs font-medium text-gray-500 mb-1.5">Shareable link</p>
+      <div className="bg-card rounded-2xl border border-line p-4">
+        <p className="text-xs font-medium text-muted mb-1.5">Shareable link</p>
         <div className="flex gap-2">
           <input
             readOnly
             value={agentFull ? `${origin}/agent/${agent.unique_token}` : ""}
-            className="flex-1 rounded-lg border border-gray-200 px-3 py-1.5 text-sm bg-gray-50 text-gray-500"
+            className="flex-1 rounded-lg border border-line px-3 py-1.5 text-sm bg-hover text-muted"
           />
           <button
             type="button"
             onClick={handleCopyLink}
-            className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 shrink-0"
+            className="rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:bg-hover shrink-0"
           >
             {copyLabel}
           </button>
@@ -301,46 +301,46 @@ export default function AgentDetailPage() {
       </div>
 
       {agent.type === "unlicensed" && (
-        <div className="bg-white rounded-2xl border border-gray-100 p-4">
-          <p className="text-xs font-medium text-gray-500 mb-2">Exam date</p>
+        <div className="bg-card rounded-2xl border border-line p-4">
+          <p className="text-xs font-medium text-muted mb-2">Exam date</p>
           <input
             type="date"
             value={agentFull.dates.exam_date ?? ""}
             onChange={(e) => handleExamDate(e.target.value)}
-            className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm"
+            className="rounded-lg border border-line px-3 py-1.5 text-sm"
           />
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-medium text-gray-500">Stall snooze</p>
+          <p className="text-xs font-medium text-muted">Stall snooze</p>
         </div>
         <input
           type="date"
           value={agent.stall_snoozed_until ?? ""}
           onChange={(e) => handleSnooze(e.target.value)}
-          className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm"
+          className="rounded-lg border border-line px-3 py-1.5 text-sm"
         />
-        <p className="text-xs text-gray-400 mt-1">
+        <p className="text-xs text-faint mt-1">
           Stall detection is suppressed until this date.
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
-        <p className="text-xs font-medium text-gray-500 mb-2">Internal notes</p>
+      <div className="bg-card rounded-2xl border border-line p-4">
+        <p className="text-xs font-medium text-muted mb-2">Internal notes</p>
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           onBlur={handleNotesBlur}
           rows={4}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-line px-3 py-2 text-sm"
           placeholder="Notes visible to admins only…"
         />
       </div>
 
       <div>
-        <p className="text-xs font-medium text-gray-500 mb-2">Pipeline</p>
+        <p className="text-xs font-medium text-muted mb-2">Pipeline</p>
         <Pipeline agentFull={agentFull} onStageClick={handleStageClick} />
       </div>
 
@@ -361,12 +361,12 @@ export default function AgentDetailPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Checklist</p>
         <Checklist agentFull={agentFull} admin onToggle={toggleStep} />
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Weekly schedule</p>
         <WeeklySchedule
           schedules={schedules}

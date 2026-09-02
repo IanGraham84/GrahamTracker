@@ -74,10 +74,10 @@ export default function AgentSelfServicePage() {
   }
 
   if (loading) {
-    return <p className="text-sm text-gray-400 p-8">Loading…</p>;
+    return <p className="text-sm text-faint p-8">Loading…</p>;
   }
   if (notFound || !agentFull) {
-    return <p className="text-sm text-gray-400 p-8">We couldn&apos;t find that checklist.</p>;
+    return <p className="text-sm text-faint p-8">We couldn&apos;t find that checklist.</p>;
   }
 
   const progress = computeProgress(agentFull);
@@ -90,20 +90,20 @@ export default function AgentSelfServicePage() {
           {AGENCY.name}
         </p>
         <h1 className="text-2xl font-semibold">Welcome, {agentFull.agent.name.split(" ")[0]}!</h1>
-        <p className="text-sm text-gray-500">{stage}</p>
+        <p className="text-sm text-muted">{stage}</p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <ProgressBar percent={progress} />
-        <p className="text-xs text-gray-400 mt-1">{progress}% complete</p>
+        <p className="text-xs text-faint mt-1">{progress}% complete</p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Your checklist</p>
         <Checklist agentFull={agentFull} admin={false} onToggle={toggleStep} />
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-4">
+      <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Your weekly schedule</p>
         <WeeklySchedule
           schedules={schedules}

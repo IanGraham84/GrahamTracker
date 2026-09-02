@@ -11,11 +11,11 @@ export default function Modal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl border border-gray-100 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto"
+        className="bg-card rounded-2xl border border-line p-6 w-full max-w-md max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
@@ -23,7 +23,7 @@ export default function Modal({
           <button
             type="button"
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl leading-none"
+            className="text-faint hover:text-muted text-xl leading-none"
             aria-label="Close"
           >
             &times;

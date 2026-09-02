@@ -67,7 +67,7 @@ export default function DashboardPage() {
         <button
           type="button"
           onClick={handleExportCsv}
-          className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+          className="rounded-lg border border-line px-3 py-1.5 text-sm text-muted hover:bg-hover"
         >
           Export CSV
         </button>
@@ -78,18 +78,18 @@ export default function DashboardPage() {
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-500">Sort by</span>
+          <span className="text-muted">Sort by</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortBy)}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm"
           >
             <option value="funnel">Funnel stage</option>
             <option value="date">Date added</option>
             <option value="upline">Upline</option>
           </select>
         </div>
-        <label className="flex items-center gap-2 text-sm text-gray-600">
+        <label className="flex items-center gap-2 text-sm text-muted">
           <input
             type="checkbox"
             checked={showArchived}
@@ -101,7 +101,7 @@ export default function DashboardPage() {
       </div>
 
       {isLoading ? (
-        <p className="text-sm text-gray-400">Loading…</p>
+        <p className="text-sm text-faint">Loading…</p>
       ) : (
         <FunnelGroups agents={displayedAgents} sortBy={sortBy} />
       )}

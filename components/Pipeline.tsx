@@ -29,12 +29,12 @@ export default function Pipeline({
             onClick={() => clickable && onStageClick?.(stage)}
             className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
               isCurrent
-                ? "bg-primary text-white border-primary"
+                ? "bg-primary text-background border-primary"
                 : reached
                 ? "bg-primary-light text-primary-dark border-primary-light"
                 : clickable
-                ? "bg-white text-gray-500 border-gray-200 hover:border-primary hover:text-primary cursor-pointer"
-                : "bg-white text-gray-300 border-gray-100 cursor-default"
+                ? "bg-card text-muted border-line hover:border-primary hover:text-primary cursor-pointer"
+                : "bg-card text-faint border-line cursor-default"
             }`}
           >
             {stage}

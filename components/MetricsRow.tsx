@@ -31,9 +31,9 @@ export default function MetricsRow({ agents }: { agents: AgentFull[] }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
       {tiles.map((tile) => (
-        <div key={tile.label} className="bg-white rounded-2xl border border-gray-100 p-4">
+        <div key={tile.label} className="bg-card rounded-2xl border border-line p-4">
           <p className="text-2xl font-semibold text-foreground">{tile.value}</p>
-          <p className="text-xs text-gray-500 mt-1">{tile.label}</p>
+          <p className="text-xs text-muted mt-1">{tile.label}</p>
         </div>
       ))}
     </div>

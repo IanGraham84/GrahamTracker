@@ -22,7 +22,7 @@ export default function Checklist({
 
         return (
           <div key={group}>
-            <h3 className="text-sm font-semibold text-gray-600 mb-2">{group}</h3>
+            <h3 className="text-sm font-semibold text-muted mb-2">{group}</h3>
             <div className="space-y-1.5">
               {groupSteps.map((step) => {
                 const record = agentFull.checks[step.id];
@@ -35,7 +35,7 @@ export default function Checklist({
                     className={`flex items-start gap-3 rounded-xl border p-3 transition-colors ${
                       isChecked
                         ? "bg-primary-light/50 border-primary-light"
-                        : "bg-white border-gray-100"
+                        : "bg-card border-line"
                     } ${lockedForAgent ? "cursor-default" : "cursor-pointer"}`}
                   >
                     <input
@@ -50,7 +50,7 @@ export default function Checklist({
                         {step.name}
                       </p>
                       {step.note && (
-                        <p className="text-xs text-gray-500 mt-0.5">{step.note}</p>
+                        <p className="text-xs text-muted mt-0.5">{step.note}</p>
                       )}
                       {step.links && step.links.length > 0 && (
                         <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
@@ -69,7 +69,7 @@ export default function Checklist({
                         </div>
                       )}
                       {record?.checked_at && (
-                        <p className="text-[11px] text-gray-400 mt-1">
+                        <p className="text-[11px] text-faint mt-1">
                           Checked {record.checked_by === "admin" ? "by admin" : "by agent"} on{" "}
                           {new Date(record.checked_at).toLocaleDateString()}
                         </p>

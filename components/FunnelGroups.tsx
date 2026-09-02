@@ -18,7 +18,7 @@ function AgentRow({ agentFull }: { agentFull: AgentFull }) {
   return (
     <Link
       href={`/dashboard/${agentFull.agent.id}`}
-      className="flex items-center gap-3 bg-white rounded-xl border border-gray-100 p-3 hover:border-primary/40 transition-colors"
+      className="flex items-center gap-3 bg-card rounded-xl border border-line p-3 hover:border-primary/40 transition-colors"
     >
       <Avatar name={agentFull.agent.name} stalled={!!stall} size="sm" />
       <div className="flex-1 min-w-0">
@@ -26,12 +26,12 @@ function AgentRow({ agentFull }: { agentFull: AgentFull }) {
           <p className="font-medium text-sm truncate">{agentFull.agent.name}</p>
           {stall && <StallPill label={stall.label} />}
         </div>
-        <p className="text-xs text-gray-500 truncate">{stage}</p>
+        <p className="text-xs text-muted truncate">{stage}</p>
         <div className="mt-1.5 max-w-[220px]">
           <ProgressBar percent={progress} />
         </div>
       </div>
-      <span className="text-xs text-gray-400 shrink-0">{progress}%</span>
+      <span className="text-xs text-faint shrink-0">{progress}%</span>
     </Link>
   );
 }
@@ -44,7 +44,7 @@ export default function FunnelGroups({
   sortBy: SortBy;
 }) {
   if (agents.length === 0) {
-    return <p className="text-sm text-gray-500">No agents yet.</p>;
+    return <p className="text-sm text-muted">No agents yet.</p>;
   }
 
   if (sortBy === "funnel") {
@@ -68,9 +68,9 @@ export default function FunnelGroups({
           .filter((stage) => (grouped.get(stage)?.length ?? 0) > 0)
           .map((stage) => (
             <div key={stage}>
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">
+              <h3 className="text-sm font-semibold text-muted mb-2">
                 {stage}{" "}
-                <span className="text-gray-400 font-normal">
+                <span className="text-faint font-normal">
                   ({grouped.get(stage)!.length})
                 </span>
               </h3>

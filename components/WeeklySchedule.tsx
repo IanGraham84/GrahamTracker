@@ -75,11 +75,11 @@ export default function WeeklySchedule({
     <div>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-500">View in</span>
+          <span className="text-muted">View in</span>
           <select
             value={viewTz}
             onChange={(e) => setViewTz(e.target.value)}
-            className="rounded-lg border border-gray-200 px-2 py-1 text-sm"
+            className="rounded-lg border border-line px-2 py-1 text-sm"
           >
             {COMMON_TIMEZONES.map((tz) => (
               <option key={tz} value={tz}>
@@ -105,7 +105,7 @@ export default function WeeklySchedule({
           <select
             value={form.day_of_week}
             onChange={(e) => setForm((f) => ({ ...f, day_of_week: Number(e.target.value) }))}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm"
           >
             {DISPLAY_ORDER.map((d) => (
               <option key={d} value={d}>
@@ -117,24 +117,24 @@ export default function WeeklySchedule({
             type="time"
             value={form.start_time}
             onChange={(e) => setForm((f) => ({ ...f, start_time: e.target.value }))}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm"
           />
           <input
             type="time"
             value={form.end_time}
             onChange={(e) => setForm((f) => ({ ...f, end_time: e.target.value }))}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm"
           />
           <input
             placeholder="Label (optional)"
             value={form.label}
             onChange={(e) => setForm((f) => ({ ...f, label: e.target.value }))}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm col-span-2"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm col-span-2"
           />
           <select
             value={form.timezone}
             onChange={(e) => setForm((f) => ({ ...f, timezone: e.target.value }))}
-            className="rounded-lg border border-gray-200 px-2 py-1.5 text-sm"
+            className="rounded-lg border border-line px-2 py-1.5 text-sm"
           >
             {COMMON_TIMEZONES.map((tz) => (
               <option key={tz} value={tz}>
@@ -145,7 +145,7 @@ export default function WeeklySchedule({
           <button
             type="submit"
             disabled={saving}
-            className="col-span-2 sm:col-span-3 rounded-lg bg-primary text-white py-1.5 text-sm font-medium disabled:opacity-50"
+            className="col-span-2 sm:col-span-3 rounded-lg bg-primary text-background py-1.5 text-sm font-medium disabled:opacity-50"
           >
             {saving ? "Adding…" : "Add"}
           </button>
@@ -154,8 +154,8 @@ export default function WeeklySchedule({
 
       <div className="grid grid-cols-1 sm:grid-cols-7 gap-2">
         {DISPLAY_ORDER.map((day) => (
-          <div key={day} className="bg-white rounded-xl border border-gray-100 p-2 min-h-[80px]">
-            <p className="text-xs font-semibold text-gray-500 mb-1.5">{DAY_LABELS[day]}</p>
+          <div key={day} className="bg-card rounded-xl border border-line p-2 min-h-[80px]">
+            <p className="text-xs font-semibold text-muted mb-1.5">{DAY_LABELS[day]}</p>
             <div className="space-y-1.5">
               {(byDay.get(day) ?? []).map(({ schedule, start, end }) => (
                 <div

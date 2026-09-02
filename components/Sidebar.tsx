@@ -24,17 +24,17 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-64 shrink-0 border-r border-gray-100 bg-white flex flex-col h-screen sticky top-0">
-      <div className="p-4 border-b border-gray-100">
+    <aside className="w-64 shrink-0 border-r border-line bg-card flex flex-col h-screen sticky top-0">
+      <div className="p-4 border-b border-line">
         <p className="font-semibold text-sm">{AGENCY.name}</p>
-        <p className="text-xs text-gray-400">Onboarding tracker</p>
+        <p className="text-xs text-faint">Onboarding tracker</p>
       </div>
 
       <div className="p-3">
         <button
           type="button"
           onClick={() => setShowAdd(true)}
-          className="w-full rounded-lg bg-primary text-white text-sm font-medium py-2 hover:bg-primary-dark transition-colors"
+          className="w-full rounded-lg bg-primary text-background text-sm font-medium py-2 hover:bg-primary-dark transition-colors"
         >
           + Add agent
         </button>
@@ -44,7 +44,7 @@ export default function Sidebar() {
         <Link
           href="/dashboard"
           className={`block rounded-lg px-3 py-2 text-sm font-medium ${
-            pathname === "/dashboard" ? "bg-primary-light text-primary-dark" : "text-gray-600 hover:bg-gray-50"
+            pathname === "/dashboard" ? "bg-primary-light text-primary-dark" : "text-muted hover:bg-hover"
           }`}
         >
           Dashboard
@@ -54,13 +54,13 @@ export default function Sidebar() {
           className={`block rounded-lg px-3 py-2 text-sm font-medium ${
             pathname === "/dashboard/schedule"
               ? "bg-primary-light text-primary-dark"
-              : "text-gray-600 hover:bg-gray-50"
+              : "text-muted hover:bg-hover"
           }`}
         >
           Master schedule
         </Link>
 
-        <p className="px-3 pt-4 pb-1 text-[11px] font-semibold uppercase text-gray-400">
+        <p className="px-3 pt-4 pb-1 text-[11px] font-semibold uppercase text-faint">
           Agents
         </p>
         {agents.map((a) => {
@@ -71,7 +71,7 @@ export default function Sidebar() {
               key={a.agent.id}
               href={`/dashboard/${a.agent.id}`}
               className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${
-                active ? "bg-primary-light text-primary-dark font-medium" : "text-gray-600 hover:bg-gray-50"
+                active ? "bg-primary-light text-primary-dark font-medium" : "text-muted hover:bg-hover"
               }`}
             >
               <Avatar name={a.agent.name} stalled={!!stall} size="sm" />
@@ -81,11 +81,11 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="p-3 border-t border-gray-100">
+      <div className="p-3 border-t border-line">
         <button
           type="button"
           onClick={handleLogout}
-          className="w-full rounded-lg border border-gray-200 text-gray-500 text-sm py-2 hover:bg-gray-50"
+          className="w-full rounded-lg border border-line text-muted text-sm py-2 hover:bg-hover"
         >
           Log out
         </button>

@@ -12,7 +12,7 @@ const PALETTE = [
   { bg: "bg-sky-light", text: "text-sky" },
   { bg: "bg-warm-light", text: "text-warm" },
   { bg: "bg-stall-light", text: "text-stall" },
-  { bg: "bg-gray-100", text: "text-gray-600" },
+  { bg: "bg-hover", text: "text-muted" },
 ];
 
 type AgentRef = { id: string; name: string };
@@ -90,7 +90,7 @@ export default function MasterSchedulePage() {
                 onClick={() => toggleAgent(a.id)}
                 className={`text-xs font-medium px-2.5 py-1 rounded-full border ${
                   hidden
-                    ? "border-gray-200 text-gray-300 bg-white"
+                    ? "border-line text-faint bg-card"
                     : `border-transparent ${color.bg} ${color.text}`
                 }`}
               >
@@ -100,11 +100,11 @@ export default function MasterSchedulePage() {
           })}
         </div>
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-500">View in</span>
+          <span className="text-muted">View in</span>
           <select
             value={viewTz}
             onChange={(e) => setViewTz(e.target.value)}
-            className="rounded-lg border border-gray-200 px-2 py-1 text-sm"
+            className="rounded-lg border border-line px-2 py-1 text-sm"
           >
             {COMMON_TIMEZONES.map((tz) => (
               <option key={tz} value={tz}>
@@ -116,12 +116,12 @@ export default function MasterSchedulePage() {
       </div>
 
       {loading ? (
-        <p className="text-sm text-gray-400">Loading…</p>
+        <p className="text-sm text-faint">Loading…</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-7 gap-2">
           {DISPLAY_ORDER.map((day) => (
-            <div key={day} className="bg-white rounded-xl border border-gray-100 p-2 min-h-[120px]">
-              <p className="text-xs font-semibold text-gray-500 mb-1.5">{DAY_LABELS[day]}</p>
+            <div key={day} className="bg-card rounded-xl border border-line p-2 min-h-[120px]">
+              <p className="text-xs font-semibold text-muted mb-1.5">{DAY_LABELS[day]}</p>
               <div className="space-y-1.5">
                 {(byDay.get(day) ?? []).map(({ schedule, start, end }) => {
                   const color = colorByAgent.get(schedule.agent_id) ?? PALETTE[0];
