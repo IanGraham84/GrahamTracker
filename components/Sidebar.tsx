@@ -9,12 +9,16 @@ import Avatar from "./Avatar";
 import AddAgentModal from "./AddAgentModal";
 import { detectStall } from "@/lib/stall";
 import { createClient } from "@/lib/supabaseClient";
+import { matchesAgentSearch } from "@/lib/search";
 
 export default function Sidebar() {
   const { agents, refetch } = useAgents();
   const [showAdd, setShowAdd] = useState(false);
+  const [search, setSearch] = useState("");
   const pathname = usePathname();
   const router = useRouter();
+
+  const visibleAgents = agents.filter((a) => matchesAgentSearch(a, search));
 
   async function handleLogout() {
     const supabase = createClient();
@@ -40,6 +44,27 @@ export default function Sidebar() {
         </button>
       </div>
 
+      <div className="px-3 pb-2">
+        <div className="relative">
+          <svg
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-faint"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.6 0 7.5 7.5 0 0010.6 0z" />
+          </svg>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search name, state, phone…"
+            className="w-full rounded-lg border border-line bg-background pl-8 pr-2 py-1.5 text-xs"
+          />
+        </div>
+      </div>
+
       <nav className="flex-1 overflow-y-auto px-2 space-y-1">
         <Link
           href="/dashboard"
@@ -63,7 +88,10 @@ export default function Sidebar() {
         <p className="px-3 pt-4 pb-1 text-[11px] font-semibold uppercase text-faint">
           Agents
         </p>
-        {agents.map((a) => {
+        {visibleAgents.length === 0 && search.trim() && (
+          <p className="px-3 py-1 text-xs text-faint">No matches.</p>
+        )}
+        {visibleAgents.map((a) => {
           const stall = detectStall(a);
           const active = pathname === `/dashboard/${a.agent.id}`;
           return (

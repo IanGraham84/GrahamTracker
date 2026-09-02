@@ -222,8 +222,17 @@ export default function AgentDetailPage() {
             </div>
             <p className="text-sm text-muted">{stage}</p>
             {stall && (
-              <div className="mt-1">
+              <div className="mt-1 flex items-center gap-2 flex-wrap">
                 <StallPill label={stall.label} />
+                <label className="flex items-center gap-1 text-[11px] text-faint">
+                  Snooze until
+                  <input
+                    type="date"
+                    value={agent.stall_snoozed_until ?? ""}
+                    onChange={(e) => handleSnooze(e.target.value)}
+                    className="rounded-md border border-line bg-card px-1.5 py-0.5 text-xs text-foreground"
+                  />
+                </label>
               </div>
             )}
           </div>
@@ -311,21 +320,6 @@ export default function AgentDetailPage() {
           />
         </div>
       )}
-
-      <div className="bg-card rounded-2xl border border-line p-4">
-        <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-medium text-muted">Stall snooze</p>
-        </div>
-        <input
-          type="date"
-          value={agent.stall_snoozed_until ?? ""}
-          onChange={(e) => handleSnooze(e.target.value)}
-          className="rounded-lg border border-line px-3 py-1.5 text-sm"
-        />
-        <p className="text-xs text-faint mt-1">
-          Stall detection is suppressed until this date.
-        </p>
-      </div>
 
       <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-xs font-medium text-muted mb-2">Internal notes</p>
