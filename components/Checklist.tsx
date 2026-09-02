@@ -93,12 +93,12 @@ export default function Checklist({
     return { group, groupSteps, checkedCount, isComplete: groupSteps.length > 0 && checkedCount === groupSteps.length };
   }).filter((g) => g.groupSteps.length > 0);
 
-  // Groups that are already complete start collapsed; anything still in
-  // progress starts open. Only computed once per mount (per agent, via the
-  // `key` the parent passes) — a later toggle doesn't yank a group shut
-  // out from under whoever is looking at it.
+  // Every group starts collapsed except the first one, so there's always
+  // something visible to start on. Only computed once per mount (per agent,
+  // via the `key` the parent passes) — a later toggle doesn't yank a group
+  // shut out from under whoever is looking at it.
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(groups.map((g) => [g.group, g.isComplete]))
+    Object.fromEntries(groups.map((g, i) => [g.group, i !== 0]))
   );
 
   function toggleGroup(group: string) {
