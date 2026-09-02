@@ -6,6 +6,7 @@ import { AgentFull, AgentSchedule } from "@/lib/types";
 import { computeStage, computeProgress, FunnelStage, STAGE_ADVANCE_STEPS } from "@/lib/funnel";
 import { detectStall } from "@/lib/stall";
 import { createClient } from "@/lib/supabaseClient";
+import { useAgents } from "@/lib/AgentsContext";
 import Avatar from "@/components/Avatar";
 import StallPill from "@/components/StallPill";
 import ProgressBar from "@/components/ProgressBar";
@@ -18,6 +19,7 @@ export default function AgentDetailPage() {
   const params = useParams<{ agentId: string }>();
   const agentId = params.agentId;
   const router = useRouter();
+  const { refetch: refetchAgents } = useAgents();
 
   const [agentFull, setAgentFull] = useState<AgentFull | null>(null);
   const [schedules, setSchedules] = useState<AgentSchedule[]>([]);
@@ -158,11 +160,13 @@ export default function AgentDetailPage() {
       body: JSON.stringify({ archived_at: archiving ? new Date().toISOString() : null }),
     });
     load();
+    refetchAgents();
   }
 
   async function handleRemove() {
     if (!confirm("Remove this agent permanently? This cannot be undone.")) return;
     await fetch(`/api/admin/agents/${agentId}`, { method: "DELETE" });
+    refetchAgents();
     router.push("/dashboard");
   }
 
@@ -379,7 +383,10 @@ export default function AgentDetailPage() {
         <EditAgentModal
           agent={agent}
           onClose={() => setShowEdit(false)}
-          onSaved={() => load()}
+          onSaved={() => {
+            load();
+            refetchAgents();
+          }}
         />
       )}
     </div>

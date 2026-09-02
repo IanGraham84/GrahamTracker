@@ -11,7 +11,7 @@ import { detectStall } from "@/lib/stall";
 import { createClient } from "@/lib/supabaseClient";
 
 export default function Sidebar() {
-  const { agents } = useAgents();
+  const { agents, refetch } = useAgents();
   const [showAdd, setShowAdd] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -94,7 +94,10 @@ export default function Sidebar() {
       {showAdd && (
         <AddAgentModal
           onClose={() => setShowAdd(false)}
-          onCreated={(agent) => router.push(`/dashboard/${agent.id}`)}
+          onCreated={(agent) => {
+            refetch();
+            router.push(`/dashboard/${agent.id}`);
+          }}
         />
       )}
     </aside>
