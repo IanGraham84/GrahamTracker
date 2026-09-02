@@ -85,13 +85,44 @@ export default function FunnelGroups({
     );
   }
 
-  const sorted = [...agents].sort((a, b) => {
-    if (sortBy === "date") {
-      return new Date(b.agent.created_at).getTime() - new Date(a.agent.created_at).getTime();
+  if (sortBy === "upline") {
+    const grouped = new Map<string, AgentFull[]>();
+    for (const a of agents) {
+      const key = a.agent.upline?.trim() || "No upline";
+      const list = grouped.get(key) ?? [];
+      list.push(a);
+      grouped.set(key, list);
     }
-    // upline
-    return (a.agent.upline ?? "").localeCompare(b.agent.upline ?? "");
-  });
+    for (const list of grouped.values()) {
+      list.sort((a, b) => a.agent.name.localeCompare(b.agent.name));
+    }
+    const uplines = Array.from(grouped.keys()).sort((a, b) => {
+      if (a === "No upline") return 1;
+      if (b === "No upline") return -1;
+      return a.localeCompare(b);
+    });
+
+    return (
+      <div className="space-y-6">
+        {uplines.map((upline) => (
+          <div key={upline}>
+            <h3 className="text-sm font-semibold text-muted mb-2">
+              {upline} <span className="text-faint font-normal">({grouped.get(upline)!.length})</span>
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {grouped.get(upline)!.map((a) => (
+                <AgentRow key={a.agent.id} agentFull={a} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  const sorted = [...agents].sort(
+    (a, b) => new Date(b.agent.created_at).getTime() - new Date(a.agent.created_at).getTime()
+  );
 
   return (
     <div className="grid gap-2 sm:grid-cols-2">
