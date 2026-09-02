@@ -27,7 +27,7 @@ export const STEPS: Step[] = [
   { id: "3", name: "Fingerprints done and submitted (if required)", group: "Licensing", note: "See state licensing requirements", unlicensedOnly: true, links: [l("State Requirements", "https://docs.google.com/document/d/1O3wmlDe9VLMu3jMmEO5OIrRPXfLvApSIt_GqcRLZnxE/edit?tab=t.0")] },
   { id: "4", name: "Apply for state licensure", group: "Licensing", unlicensedOnly: true, links: [l("Apply at NIPR", "https://nipr.com/")] },
   { id: "license_received", name: "Full license received", group: "Licensing", note: "Admin or agent confirms", unlicensedOnly: true },
-  { id: "5", name: "Confirm you're in agency Slack chats", group: "Getting started", links: [l("Join Slack", "https://join.slack.com/t/huntagency-master/shared_invite/zt-3ua3kgjb4-c9SwZZy8T_5b8GuKWPPFkg")] },
+  { id: "5", name: "Confirm you're in agency Slack chats", group: "Getting started", links: [l("Join Slack", "https://graham-tracker.vercel.app/agent/9c082b3b-9aec-47f8-92ca-8534b544c634")] },
   { id: "6", name: "Add weekly calls to calendar", group: "Getting started", links: [l("View calendar", "https://docs.google.com/spreadsheets/d/18YvskC_fQ3e1IfXtAbtK6eN5H9ZfYrqwaFYCQ-ygavU/edit?usp=sharing")] },
   { id: "8", name: "Submit headshot for promotional purposes", group: "Getting started", links: [l("Submit headshot", "https://forms.gle/SyY4j2AK2yVP2JE38")] },
   { id: "9a", name: "Open separate banking account for insurance deposits", group: "Getting started" },
