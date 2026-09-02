@@ -30,9 +30,12 @@ export default function ProgressSummary({
       </div>
       <ProgressBar percent={percent} />
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
+      <div className="flex flex-wrap justify-center gap-3 pt-1">
         {groups.map((g) => (
-          <div key={g.group} className="rounded-xl bg-hover px-3 py-3 text-center">
+          <div
+            key={g.group}
+            className="flex-none basis-[calc(50%-6px)] sm:basis-[calc(33.333%-8px)] rounded-xl bg-hover px-3 py-3 text-center"
+          >
             <p className="text-lg font-semibold text-foreground">{g.percent}%</p>
             <p className="text-xs text-muted mt-0.5">{g.group}</p>
           </div>
