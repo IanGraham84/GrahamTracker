@@ -22,7 +22,7 @@ function l(label: string, url: string): StepLink {
 }
 
 export const STEPS: Step[] = [
-  { id: "1", name: "Watch welcome video", group: "Getting started", note: "2 min intro video", links: [l("Watch video", "https://drive.google.com/file/d/1Cq8GpdmgVyo9ymu-8u7eb-r7C59E07rB/view?usp=sharing")] },
+  { id: "1", name: "Watch welcome video", group: "Getting started", note: "2 min intro video", links: [l("Watch video", "https://vimeo.com/1223055151/7cdec0cd7a?share=copy&fl=sv&fe=ci#t=0")] },
   { id: "2", name: "Pass state exam", group: "Licensing", unlicensedOnly: true },
   { id: "3", name: "Fingerprints done and submitted (if required)", group: "Licensing", note: "See state licensing requirements", unlicensedOnly: true, links: [l("State Requirements", "https://docs.google.com/document/d/1O3wmlDe9VLMu3jMmEO5OIrRPXfLvApSIt_GqcRLZnxE/edit?tab=t.0")] },
   { id: "4", name: "Apply for state licensure", group: "Licensing", unlicensedOnly: true, links: [l("Apply at NIPR", "https://nipr.com/")] },
