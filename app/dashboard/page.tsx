@@ -85,7 +85,7 @@ export default function DashboardPage() {
             className="rounded-lg border border-line px-2 py-1.5 text-sm"
           >
             <option value="funnel">Funnel stage</option>
-            <option value="date">Date added</option>
+            <option value="date">Start date</option>
             <option value="upline">Upline</option>
           </select>
         </div>

@@ -120,20 +120,20 @@ export default function FunnelGroups({
     );
   }
 
-  // sortBy === "date"
+  // sortBy === "date" — grouped by the agent's start_date (the date the
+  // admin sets), not created_at (when the row was inserted), since that's
+  // what the "Start date" sort option is understood to mean.
   const grouped = new Map<string, { label: string; agents: AgentFull[] }>();
   for (const a of agents) {
-    const created = new Date(a.agent.created_at);
-    const key = `${created.getFullYear()}-${String(created.getMonth() + 1).padStart(2, "0")}`;
-    const label = created.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    const start = new Date(`${a.agent.start_date}T00:00:00`);
+    const key = `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, "0")}`;
+    const label = start.toLocaleDateString("en-US", { month: "long", year: "numeric" });
     const entry = grouped.get(key) ?? { label, agents: [] };
     entry.agents.push(a);
     grouped.set(key, entry);
   }
   for (const entry of grouped.values()) {
-    entry.agents.sort(
-      (a, b) => new Date(b.agent.created_at).getTime() - new Date(a.agent.created_at).getTime()
-    );
+    entry.agents.sort((a, b) => b.agent.start_date.localeCompare(a.agent.start_date));
   }
   const monthKeys = Array.from(grouped.keys()).sort((a, b) => b.localeCompare(a));
 
