@@ -120,15 +120,40 @@ export default function FunnelGroups({
     );
   }
 
-  const sorted = [...agents].sort(
-    (a, b) => new Date(b.agent.created_at).getTime() - new Date(a.agent.created_at).getTime()
-  );
+  // sortBy === "date"
+  const grouped = new Map<string, { label: string; agents: AgentFull[] }>();
+  for (const a of agents) {
+    const created = new Date(a.agent.created_at);
+    const key = `${created.getFullYear()}-${String(created.getMonth() + 1).padStart(2, "0")}`;
+    const label = created.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    const entry = grouped.get(key) ?? { label, agents: [] };
+    entry.agents.push(a);
+    grouped.set(key, entry);
+  }
+  for (const entry of grouped.values()) {
+    entry.agents.sort(
+      (a, b) => new Date(b.agent.created_at).getTime() - new Date(a.agent.created_at).getTime()
+    );
+  }
+  const monthKeys = Array.from(grouped.keys()).sort((a, b) => b.localeCompare(a));
 
   return (
-    <div className="grid gap-2 sm:grid-cols-2">
-      {sorted.map((a) => (
-        <AgentRow key={a.agent.id} agentFull={a} />
-      ))}
+    <div className="space-y-6">
+      {monthKeys.map((key) => {
+        const { label, agents: monthAgents } = grouped.get(key)!;
+        return (
+          <div key={key}>
+            <h3 className="text-sm font-semibold text-muted mb-2">
+              {label} <span className="text-faint font-normal">({monthAgents.length})</span>
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {monthAgents.map((a) => (
+                <AgentRow key={a.agent.id} agentFull={a} />
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
