@@ -3,13 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { AgentFull, AgentSchedule } from "@/lib/types";
-import { computeStage, computeProgress, FunnelStage, STAGE_ADVANCE_STEPS } from "@/lib/funnel";
+import { computeStage, FunnelStage, STAGE_ADVANCE_STEPS } from "@/lib/funnel";
 import { detectStall } from "@/lib/stall";
 import { createClient } from "@/lib/supabaseClient";
 import { useAgents } from "@/lib/AgentsContext";
 import Avatar from "@/components/Avatar";
 import StallPill from "@/components/StallPill";
-import ProgressBar from "@/components/ProgressBar";
+import ProgressSummary from "@/components/ProgressSummary";
 import Pipeline from "@/components/Pipeline";
 import Checklist from "@/components/Checklist";
 import WeeklySchedule from "@/components/WeeklySchedule";
@@ -203,7 +203,6 @@ export default function AgentDetailPage() {
   if (notFound || !agentFull) return <p className="text-sm text-faint">Agent not found.</p>;
 
   const stage = computeStage(agentFull);
-  const progress = computeProgress(agentFull);
   const stall = detectStall(agentFull);
   const { agent } = agentFull;
 
@@ -254,10 +253,7 @@ export default function AgentDetailPage() {
         </div>
       </div>
 
-      <div className="bg-card rounded-2xl border border-line p-4">
-        <ProgressBar percent={progress} />
-        <p className="text-xs text-faint mt-1">{progress}% complete</p>
-      </div>
+      <ProgressSummary agentFull={agentFull} title="Progress" />
 
       <div className="bg-card rounded-2xl border border-line p-4 grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
         <div>

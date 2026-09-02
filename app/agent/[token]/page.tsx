@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import confetti from "canvas-confetti";
 import { AgentFull, AgentSchedule } from "@/lib/types";
-import { computeProgress, computeStage } from "@/lib/funnel";
+import { computeStage } from "@/lib/funnel";
 import { AGENCY } from "@/lib/agency";
-import ProgressBar from "@/components/ProgressBar";
+import ProgressSummary from "@/components/ProgressSummary";
 import Checklist from "@/components/Checklist";
 import WeeklySchedule from "@/components/WeeklySchedule";
 
@@ -80,7 +80,6 @@ export default function AgentSelfServicePage() {
     return <p className="text-sm text-faint p-8">We couldn&apos;t find that checklist.</p>;
   }
 
-  const progress = computeProgress(agentFull);
   const stage = computeStage(agentFull);
 
   return (
@@ -93,10 +92,7 @@ export default function AgentSelfServicePage() {
         <p className="text-sm text-muted">{stage}</p>
       </div>
 
-      <div className="bg-card rounded-2xl border border-line p-4">
-        <ProgressBar percent={progress} />
-        <p className="text-xs text-faint mt-1">{progress}% complete</p>
-      </div>
+      <ProgressSummary agentFull={agentFull} title="Your progress" />
 
       <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Your checklist</p>

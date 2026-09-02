@@ -1,5 +1,5 @@
 import { AgentFull } from "./types";
-import { stepsForAgent } from "./steps";
+import { STEP_GROUPS, StepGroup, stepsForAgent } from "./steps";
 
 export type FunnelStage =
   | "Not started"
@@ -95,4 +95,20 @@ export function computeProgress(agentFull: AgentFull): number {
   if (steps.length === 0) return 0;
   const done = steps.filter((s) => checked(agentFull, s.id)).length;
   return Math.round((done / steps.length) * 100);
+}
+
+export type GroupProgress = { group: StepGroup; checked: number; total: number; percent: number };
+
+export function computeGroupProgress(agentFull: AgentFull): GroupProgress[] {
+  const steps = stepsForAgent(agentFull.agent.type);
+  return STEP_GROUPS.map((group) => {
+    const groupSteps = steps.filter((s) => s.group === group);
+    const done = groupSteps.filter((s) => checked(agentFull, s.id)).length;
+    return {
+      group,
+      checked: done,
+      total: groupSteps.length,
+      percent: groupSteps.length === 0 ? 0 : Math.round((done / groupSteps.length) * 100),
+    };
+  }).filter((g) => g.total > 0);
 }
