@@ -54,6 +54,15 @@ export default function AgentSelfServicePage() {
     load();
   }
 
+  async function handleExamDate(date: string) {
+    await fetch(`/api/agent/${token}/exam-date`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ examDate: date || null }),
+    });
+    load();
+  }
+
   async function handleAddSchedule(input: {
     day_of_week: number;
     start_time: string;
@@ -94,6 +103,19 @@ export default function AgentSelfServicePage() {
       </div>
 
       <ProgressSummary agentFull={agentFull} title="Your progress" />
+
+      {agentFull.agent.type === "unlicensed" && (
+        <div className="bg-card rounded-2xl border border-line p-4">
+          <p className="text-sm font-semibold mb-2">State exam date</p>
+          <p className="text-xs text-faint mb-3">Enter the date you scheduled your exam for.</p>
+          <input
+            type="date"
+            value={agentFull.dates.exam_date ?? ""}
+            onChange={(e) => handleExamDate(e.target.value)}
+            className="rounded-lg border border-line bg-background px-3 py-1.5 text-sm"
+          />
+        </div>
+      )}
 
       <div className="bg-card rounded-2xl border border-line p-4">
         <p className="text-sm font-semibold mb-3">Your checklist</p>
