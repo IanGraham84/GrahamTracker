@@ -44,7 +44,6 @@ export const STEPS: Step[] = [
   { id: "12", name: "Create SureLC account", group: "Contracting", note: "Step 3 in welcome email. No red/yellow flags." },
   { id: "13", name: "Purchase E&O Insurance and upload to SureLC", group: "Contracting", note: "Min $1M coverage. Click 'Other industries', type 'insurance agent', DBA is your name, enter address manually, coverage starts today, 0 employees, $75k expected income, select 'Life and Health', individual agent. Remove general liability from cart — total should be $21/mo.", links: [l("Get E&O Insurance", "https://refer.nextinsurance.com/AdqS82x")] },
   { id: "14", name: "Notify hiring agent and ops manager when SureLC complete", group: "Contracting", note: "Can take up to 2 weeks for writing numbers" },
-  { id: "15", name: "Log into OPT and update password", group: "Contracting", note: "OPT ID is found in HQ profile, premium version not needed", links: [l("Open OPT", "https://v2.sfgcrm.com/")] },
   { id: "17", name: "Complete SureLC carrier contracts", group: "Contracting", note: "No LTC or annuity training needed" },
   { id: "uhl_contract", name: "Complete UHL carrier contract (United Home Life)", group: "Contracting", note: "UHL is not available in SureLC — it's sent directly to your SFG email from producerexpress@sircon.com." },
   { id: "18", name: "As carrier appointments arrive — save all login info", group: "Contracting", note: "Americo, F&G, UHL, Foresters, SBLI, Corebridge, American Amicable, Banner, Mutual of Omaha, Transamerica" },
@@ -61,6 +60,7 @@ export const STEPS: Step[] = [
   { id: "activity_report", name: "Print/Save Activity Report", group: "Business launch", note: "Track your dials, contacts, and appointments to put into SimplicityAI.", links: [l("Open Activity Report", "https://drive.google.com/file/d/1WHS4Q4Gy_Hn_IkQhp20CMRjJtatl_ve6/view?usp=sharing")] },
   { id: "30", name: "Learn how to use the Counting What Counts tracker", group: "Business launch", note: "Winners are trackers — learn to use the CWC tabs to begin tracking your numbers.", links: [l("Watch tutorial", "https://vimeo.com/1203075221?share=copy&fl=sv&fe=ci")] },
   { id: "31", name: "Get in the Zoom Workroom and start dialing", group: "Go time!", note: "Password: grit", links: [l("Join Zoom", "https://us02web.zoom.us/j/84536103772?pwd=ccneAyVfOtOaKcbbmeX8iPfSKUVrug.1")] },
+  { id: "15", name: "Log into OPT and update password", group: "Go time!", note: "OPT ID is found in HQ profile, premium version not needed", links: [l("Open OPT", "https://v2.sfgcrm.com/")] },
   { id: "16", name: "Write first application and submit to OPT", group: "Go time!", note: "Triggers funnel stage: Wrote first business", links: [l("How to submit app on referral", "https://www.loom.com/share/b33b8f029688491ea6b6b0df3a999c8e"), l("How to submit app on lead", "https://www.loom.com/share/b3e64e4bcf0941a9975333a36b00e545")] },
 ];
 
