@@ -27,7 +27,6 @@ export const STEPS: Step[] = [
   { id: "2", name: "Pass state exam", group: "Licensing", unlicensedOnly: true },
   { id: "3", name: "Fingerprints done and submitted (if required)", group: "Licensing", note: "See state licensing requirements", unlicensedOnly: true, links: [l("State Requirements", "https://docs.google.com/document/d/1O3wmlDe9VLMu3jMmEO5OIrRPXfLvApSIt_GqcRLZnxE/edit?tab=t.0")] },
   { id: "4", name: "Apply for state licensure", group: "Licensing", unlicensedOnly: true, links: [l("Apply at NIPR", "https://nipr.com/")] },
-  { id: "update_application", name: "Update onboarding application", group: "Licensing", note: "If you don't receive your welcome email within 48 hours of submitting, reach out to your mentor.", unlicensedOnly: true, links: [l("Open application", "https://quilityonboarding.com/auth/login")] },
   { id: "license_received", name: "Full license received", group: "Licensing", note: "Admin or agent confirms", unlicensedOnly: true },
   { id: "5", name: "Confirm you're in agency Slack chats", group: "Getting started", links: [l("Join Slack", "https://thedelaneyagency.slack.com/join/shared_invite/zt-44qczj4wk-gbvwMMaz_CXJENGx8l5phw#/shared-invite/email")] },
   { id: "6", name: "Add weekly calls to calendar", group: "Getting started", links: [l("View calendar", "https://www.canva.com/design/DAGyzALSGCc/u_rINYIrKpjLiUsF8F81Uw/view?utm_content=DAGyzALSGCc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3621a1f017")] },
