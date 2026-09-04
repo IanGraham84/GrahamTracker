@@ -22,7 +22,7 @@ function l(label: string, url: string): StepLink {
 }
 
 export const STEPS: Step[] = [
-  { id: "1", name: "Watch welcome video", group: "Getting started", note: "2 min intro video", links: [l("Watch video", "https://vimeo.com/1223055151/7cdec0cd7a?share=copy&fl=sv&fe=ci#t=0")] },
+  { id: "1", name: "Watch welcome video and create email", group: "Getting started", note: "2 min intro video. Template: firstlast.sfg@gmail.com", links: [l("Watch video", "https://vimeo.com/1223055151/7cdec0cd7a?share=copy&fl=sv&fe=ci#t=0")] },
   { id: "schedule_call_beth", name: "Schedule onboarding call with Beth", group: "Getting started", note: "Beth will text you the link to schedule." },
   { id: "2", name: "Pass state exam", group: "Licensing", unlicensedOnly: true },
   { id: "3", name: "Fingerprints done and submitted (if required)", group: "Licensing", note: "See state licensing requirements", unlicensedOnly: true, links: [l("State Requirements", "https://docs.google.com/document/d/1O3wmlDe9VLMu3jMmEO5OIrRPXfLvApSIt_GqcRLZnxE/edit?tab=t.0")] },
@@ -33,7 +33,6 @@ export const STEPS: Step[] = [
   { id: "engage_conference", name: "Add Engage 2026 Conference to calendar and purchase ticket", group: "Getting started", note: "September 23-25. Reach out to your mentor for a discount code to drop the cost from $299 to $219.", links: [l("Register", "https://www.quilityevents.com/event/engage26/home")] },
   { id: "orientation_call", name: "Attend New Agent Orientation Call", group: "Getting started", note: "Every Tuesday at 12 PM EST. You only need to attend once. Password: Maddox", links: [l("Join Zoom", "https://us06web.zoom.us/j/7276511923?pwd=6IaXf6dGH3x5Kwf8hLRyUsOjOQogpe.1"), l("Levels of Leadership", "https://hq.quility.com/cms/document/view/44534"), l("Promo Guidelines", "https://hq.quility.com/page/promotion-guidelines-and-bonuses"), l("Core Values", "https://hq.quility.com/page/symmetry-core-values"), l("4 Keys", "https://hq.quility.com/api/public/document/57508/view/four-keys-successful-week"), l("4 Cornerstones", "https://hq.quility.com/api/public/document/62330/view/four-cornerstones-of-success")] },
   { id: "9a", name: "Open separate banking account for insurance deposits", group: "Getting started" },
-  { id: "9b", name: "Open separate email account for insurance work", group: "Getting started" },
   { id: "onboarding_login", name: "Create login to onboarding portal", group: "Getting started", note: "Use your new work email and create a password — stop there for now.", links: [l("Open portal", "http://www.quilityonboarding.com/")], unlicensedOnly: true },
   { id: "enroll_course", name: 'Enroll in "Life Only" prelicensing course w/ JustInsurance', group: "Getting started", note: "This link does not provide the pre-licensing course for New York residents — reach out to Beth for a separate link.", unlicensedOnly: true, links: [l("Register", "https://getyourinsurancelicense.com/ian-graham")] },
   { id: "course_done", name: "Finished 20-hour pre-licensing course", group: "Getting started", note: "Agent OR admin can check.", unlicensedOnly: true },
