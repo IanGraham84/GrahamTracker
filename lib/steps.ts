@@ -59,7 +59,7 @@ export const STEPS: Step[] = [
   { id: "30", name: "Learn how to use the Counting What Counts tracker", group: "Business launch", note: "Winners are trackers — learn to use the CWC tabs to begin tracking your numbers. Click the link below, then click the blue 'Make a copy' button to get your own CWC tracker.", links: [l("Watch tutorial", "https://vimeo.com/1203075221?share=copy&fl=sv&fe=ci"), l("Get your CWC tracker", "https://docs.google.com/spreadsheets/d/1ivgAi6pkcOPr2qlvJyOHkFB-oSfy3wBx7L2GLhkOLZo/copy")] },
   { id: "31", name: "Get in the Zoom Workroom and start dialing", group: "Go time!", note: "Password: grit", links: [l("Join Zoom", "https://us02web.zoom.us/j/84536103772?pwd=ccneAyVfOtOaKcbbmeX8iPfSKUVrug.1")] },
   { id: "15", name: "Log into OPT and update password", group: "Go time!", note: "OPT ID is found in HQ profile, premium version not needed", links: [l("Open OPT", "https://v2.sfgcrm.com/")] },
-  { id: "16", name: "Write first application and submit to OPT", group: "Go time!", note: "Triggers funnel stage: Wrote first business. Use the 'Submit Business to Opt!' step in Fast Start on HQ for guidance." },
+  { id: "16", name: "Write first application and submit to OPT", group: "Go time!", note: "Use the 'Submit Business to Opt!' step in Fast Start on HQ for guidance." },
 ];
 
 export const STEP_GROUPS: StepGroup[] = [
