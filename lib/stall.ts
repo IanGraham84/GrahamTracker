@@ -15,6 +15,14 @@ function checked(agentFull: AgentFull, stepId: string): boolean {
   return !!agentFull.checks[stepId]?.checked;
 }
 
+function earliestCheckedAt(agentFull: AgentFull, stepIds: string[]): string | null {
+  const checkedAts = stepIds
+    .map((id) => agentFull.checks[id]?.checked_at)
+    .filter((d): d is string => !!d);
+  if (checkedAts.length === 0) return null;
+  return checkedAts.reduce((earliest, d) => (d < earliest ? d : earliest));
+}
+
 export function detectStall(agentFull: AgentFull): StallResult | null {
   const { agent, dates } = agentFull;
 
@@ -48,7 +56,17 @@ export function detectStall(agentFull: AgentFull): StallResult | null {
     return { label: "Licensed — AML/SureLC/E&O not started" };
   }
 
-  // 4. Unlicensed + exam_date in past 2+ days + step 2 not checked
+  // 4. Bundle started but not complete 3+ days after the first of AML/SureLC/E&O was checked
+  const bundleIds = ["10", "12", "13"];
+  const checkedBundleCount = bundleIds.filter((id) => checked(agentFull, id)).length;
+  if (isLicensedTrack && checkedBundleCount > 0 && checkedBundleCount < bundleIds.length) {
+    const since = daysSince(earliestCheckedAt(agentFull, bundleIds));
+    if (since !== null && since >= 3) {
+      return { label: "AML/SureLC/E&O started — bundle not complete" };
+    }
+  }
+
+  // 5. Unlicensed + exam_date in past 2+ days + step 2 not checked
   if (isUnlicensed && dates.exam_date && !checked(agentFull, "2")) {
     const since = daysSince(dates.exam_date);
     if (since !== null && since >= 2) {
@@ -56,7 +74,7 @@ export function detectStall(agentFull: AgentFull): StallResult | null {
     }
   }
 
-  // 5. Unlicensed + step 2 checked 2+ days ago + license_received not checked
+  // 6. Unlicensed + step 2 checked 2+ days ago + license_received not checked
   if (isUnlicensed && checked(agentFull, "2") && !checked(agentFull, "license_received")) {
     const since = daysSince(agentFull.checks["2"]?.checked_at ?? null);
     if (since !== null && since >= 2) {
@@ -64,7 +82,7 @@ export function detectStall(agentFull: AgentFull): StallResult | null {
     }
   }
 
-  // 6. contracts_sent_at set 2+ days ago + step 16 not checked
+  // 7. contracts_sent_at set 2+ days ago + step 16 not checked
   if (dates.contracts_sent_at && !checked(agentFull, "16")) {
     const since = daysSince(dates.contracts_sent_at);
     if (since !== null && since >= 2) {
@@ -72,7 +90,7 @@ export function detectStall(agentFull: AgentFull): StallResult | null {
     }
   }
 
-  // 7. Unlicensed + step 1 checked + course_done not checked + 7+ days since start
+  // 8. Unlicensed + step 1 checked + course_done not checked + 7+ days since start
   if (isUnlicensed && checked(agentFull, "1") && !checked(agentFull, "course_done")) {
     const since = daysSince(agent.start_date);
     if (since !== null && since >= 7) {
