@@ -116,15 +116,6 @@ export default function AgentDetailPage() {
     load();
   }
 
-  async function handleContractsSentToggle(sent: boolean) {
-    await fetch(`/api/admin/agents/${agentId}/contracts-sent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sent }),
-    });
-    load();
-  }
-
   async function handleNotesBlur() {
     await fetch(`/api/admin/agents/${agentId}`, {
       method: "PATCH",
@@ -336,23 +327,6 @@ export default function AgentDetailPage() {
       <div>
         <p className="text-xs font-medium text-muted mb-2">Pipeline</p>
         <Pipeline agentFull={agentFull} onStageClick={handleStageClick} />
-      </div>
-
-      <div className="bg-admin border border-admin-border/40 rounded-2xl p-4">
-        <label className="flex items-center gap-2 text-sm font-medium text-warm">
-          <input
-            type="checkbox"
-            checked={!!agentFull.dates.contracts_sent_at}
-            onChange={(e) => handleContractsSentToggle(e.target.checked)}
-            className="accent-[var(--color-warm)]"
-          />
-          Contracts sent
-        </label>
-        {agentFull.dates.contracts_sent_at && (
-          <p className="text-xs text-warm/70 mt-1">
-            Sent {new Date(agentFull.dates.contracts_sent_at).toLocaleDateString()}
-          </p>
-        )}
       </div>
 
       <div className="bg-card rounded-2xl border border-line p-4">

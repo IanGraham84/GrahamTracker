@@ -115,6 +115,12 @@ export async function setCheck(
     { onConflict: "agent_id,step_id" }
   );
   if (error) throw error;
+
+  // Checking off "Complete SureLC carrier contracts" is the trigger for
+  // moving an agent into the "Contracts sent" funnel stage.
+  if (stepId === "17") {
+    await setContractsSent(agentId, checked);
+  }
 }
 
 export async function setExamDate(agentId: string, examDate: string | null) {
